@@ -1,0 +1,255 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0b1514;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* A MESA DE FELTRO VERDE DO CASSINO */
+.mesa-cassino {
+    background: radial-gradient(circle, #1a5b4c 0%, #0d382e 100%);
+    border: 12px solid #5a381e; /* Borda de madeira */
+    border-radius: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #f7d070; /* Dourado */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+.subtitulo {
+    color: #a3c2b8;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+/* ÁREAS DE JOGO (DEALER E JOGADOR) */
+.area-jogo {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.area-jogo h2 {
+    font-size: 1.2rem;
+    color: #f7d070;
+    margin-bottom: 10px;
+}
+
+/* AS CARTAS FÍSICAS */
+.cartas {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    min-height: 125px;
+}
+
+.carta {
+    width: 80px;
+    height: 115px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 8px;
+    font-weight: bold;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.carta:hover {
+    transform: translateY(-5px);
+}
+
+/* Copas e Ouros ficam vermelhos */
+.carta.vermelha {
+    color: #d32f2f;
+}
+
+.valor-topo {
+    align-self: flex-start;
+    font-size: 1rem;
+}
+
+.naipe-centro {
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.valor-rodape {
+    align-self: flex-end;
+    font-size: 1rem;
+}
+
+.pontuacao {
+    font-size: 1.1rem;
+    color: #e0f2ed;
+    margin-top: 5px;
+}
+
+/* BOTÕES DE CONTROLE */
+.controles {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.botao {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 28px;
+    border-radius: 30px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.botao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.botao-comprar {
+    background: #2e7d32; /* Verde */
+}
+
+.botao-parar {
+    background: #c62828; /* Vermelho */
+}
+
+.botao-novo {
+    background: #f57f17; /* Dourado/Laranja */
+    margin-top: 15px;
+}
+
+/* ALERTA DE RESULTADO */
+.alerta-resultado {
+    background: #11221f;
+    border: 2px solid #f7d070;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    animation: aparecer 0.4s ease;
+}
+
+.alerta-resultado h2 {
+    color: #f7d070;
+    font-size: 1.6rem;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* PAINEL DE ESTATÍSTICAS */
+.painel-estatisticas {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #f7d070;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #f7d070;
+}
+
+.painel-estatisticas strong {
+    color: #fff;
+    font-size: 1.1rem;
+}
+/* --- ESTILO DAS FICHAS DE POKER / CASSINO --- */
+.ficha {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 4px dashed rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), inset 0 0 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.ficha:hover {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+.ficha-azul { background: #1976d2; }
+.ficha-verde { background: #2e7d32; }
+.ficha-vermelha { background: #d32f2f; }
+.ficha-preta { background: #212121; }
+.ficha-dourada { background: #fbc02d; color: #111; }
+
+/* --- ASSENTOS DOS JOGADORES NA MESA --- */
+.assento-jogador {
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 12px;
+    min-width: 170px;
+    max-width: 185px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Destaque dourado com brilho quando for a vez do jogador comprar/parar */
+.assento-jogador.vez-ativa {
+    border-color: #f7d070;
+    box-shadow: 0 0 18px rgba(247, 208, 112, 0.65);
+    transform: scale(1.04);
+}
+
+/* Assento que pertence a você */
+.assento-jogador.meu-assento {
+    background: rgba(26, 91, 76, 0.45);
+}
+
+.info-saldo-aposta {
+    font-size: 0.85rem;
+    color: #a3c2b8;
+    margin: 4px 0 8px;
+}
+
+.badge-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 5px;
+}

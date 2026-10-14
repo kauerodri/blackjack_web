@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassino 21 | Blackjack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="mesa-cassino">
+        <header>
+            <h1>♣ Cassino 21 ♠</h1>
+            <p class="subtitulo">Blackjack Web - IFCE Campus Crato | <a href="{{ url_for('multiplayer_lobby') }}" style="color: #f7d070; font-weight: bold; text-decoration: underline;">👥 Jogar com Amigos (Multiplayer)</a></p>
+            <p class="subtitulo">Blackjack Web - IFCE Campus Crato</p>
+        </header>
+
+        <!-- PAINEL DE ESTATÍSTICAS DO BANCO DE DADOS -->
+        <div class="painel-estatisticas">
+            <span>🏆 Vitórias: <strong id="stat-vitorias">{{ estatisticas.vitorias }}</strong></span>
+            <span>💀 Derrotas: <strong id="stat-derrotas">{{ estatisticas.derrotas }}</strong></span>
+            <span>🤝 Empates: <strong id="stat-empates">{{ estatisticas.empates }}</strong></span>
+            <span>📊 Total: <strong id="stat-total">{{ estatisticas.total }}</strong></span>
+        </div>
+
+        <!-- ÁREA DO DEALER (COMPUTADOR) -->
+        <section class="area-jogo">
+            <h2>Dealer (Computador) <span id="status-dealer" style="color: #f7d070; font-size: 0.95rem;"></span></h2>
+            <div class="cartas" id="cartas-dealer">
+                {% for carta in jogo.dealer %}
+                    <div class="carta {% if carta.naipe in ['♥', '♦'] %}vermelha{% endif %}">
+                        <span class="valor-topo">{{ carta.valor }}</span>
+                        <span class="naipe-centro">{{ carta.naipe }}</span>
+                        <span class="valor-rodape">{{ carta.valor }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="pontuacao">Pontos do Dealer: <strong id="pontos-dealer">{{ pontos_dealer }}</strong></p>
+        </section>
+
+        <!-- BANNER DE RESULTADO COM ANIMAÇÃO -->
+        <div class="alerta-resultado" id="painel-resultado" {% if not jogo.finalizado %}style="display: none;"{% endif %}>
+            <h2 id="texto-resultado">{{ jogo.resultado }}</h2>
+            <a href="{{ url_for('novo_jogo') }}" class="botao botao-novo">Jogar Novamente 🔄</a>
+        </div>
+
+        <!-- ÁREA DO JOGADOR -->
+        <section class="area-jogo">
+            <h2>Sua Mão</h2>
+            <div class="cartas" id="cartas-jogador">
+                {% for carta in jogo.jogador %}
+                    <div class="carta {% if carta.naipe in ['♥', '♦'] %}vermelha{% endif %}">
+                        <span class="valor-topo">{{ carta.valor }}</span>
+                        <span class="naipe-centro">{{ carta.naipe }}</span>
+                        <span class="valor-rodape">{{ carta.valor }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="pontuacao">Seus Pontos: <strong id="pontos-jogador">{{ pontos_jogador }}</strong></p>
+        </section>
+
+        <!-- BOTÕES DE CONTROLE VIA JAVASCRIPT -->
+        <div class="controles" id="controles-jogando" {% if jogo.finalizado %}style="display: none;"{% endif %}>
+            <button id="btn-comprar" onclick="jogarAcao('comprar')" class="botao botao-comprar">Comprar Carta ➕</button>
+            <button id="btn-parar" onclick="jogarAcao('parar')" class="botao botao-parar">Parar ✋</button>
+        </div>
+    </div>
+
+    <!-- CARREGA O NOSSO SCRIPT DE ÁUDIO E ANIMAÇÃO -->
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>

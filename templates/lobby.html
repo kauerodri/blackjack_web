@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer | Cassino 21</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="mesa-cassino" style="max-width: 600px;">
+        <header>
+            <h1>👥 Modo Multiplayer</h1>
+            <p class="subtitulo">Jogue 21 com amigos em dispositivos diferentes</p>
+        </header>
+
+        {% if erro %}
+            <div style="background: #c62828; color: #fff; padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+                ⚠️ {{ erro }}
+            </div>
+        {% endif %}
+
+        <!-- OPÇÃO 1: CRIAR UMA NOVA SALA -->
+        <div class="area-jogo" style="text-align: left; padding: 20px;">
+            <h2 style="color: #f7d070; margin-bottom: 15px;">1. Criar uma Nova Sala</h2>
+            <form action="{{ url_for('rota_criar_sala') }}" method="POST">
+                <label style="display: block; margin-bottom: 5px; color: #a3c2b8;">Seu Nome:</label>
+                <input type="text" name="nome" placeholder="Ex: Kaue" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #f7d070; background: #0d1e1c; color: #fff; margin-bottom: 15px;">
+                <button type="submit" class="botao botao-comprar" style="width: 100%;">Gerar Sala e Entrar 🎲</button>
+            </form>
+        </div>
+
+        <!-- OPÇÃO 2: ENTRAR EM UMA SALA EXISTENTE -->
+        <div class="area-jogo" style="text-align: left; padding: 20px; margin-top: 20px;">
+            <h2 style="color: #f7d070; margin-bottom: 15px;">2. Entrar com Código</h2>
+            <form action="{{ url_for('rota_entrar_sala') }}" method="POST">
+                <label style="display: block; margin-bottom: 5px; color: #a3c2b8;">Seu Nome:</label>
+                <input type="text" name="nome" placeholder="Ex: Amigo" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #f7d070; background: #0d1e1c; color: #fff; margin-bottom: 10px;">
+                
+                <label style="display: block; margin-bottom: 5px; color: #a3c2b8;">Código da Sala (4 letras):</label>
+                <input type="text" name="codigo" placeholder="Ex: X7K2" maxlength="4" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #f7d070; background: #0d1e1c; color: #fff; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 15px;">
+                
+                <button type="submit" class="botao botao-novo" style="width: 100%; margin: 0;">Entrar na Mesa 🚪</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <a href="{{ url_for('index') }}" style="color: #a3c2b8; text-decoration: none; font-size: 0.95rem;">← Voltar para o Modo Solo (vs Dealer)</a>
+        </div>
+    </div>
+
+</body>
+</html>
